@@ -4,13 +4,16 @@ import axios from 'axios';
 function App() {
   const [post, setPost] = useState({
     title: "",
-    photo: null,
+    photo: null
   });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const formData = new FormData();
+
+    const formData = new FormData()
+
     formData.append('photo', post.photo)
+
     const response = await axios.post('http://localhost:3000/upload',formData, {
       headers: {
         "Content-Type": "multipart/form-data"
@@ -25,12 +28,12 @@ function App() {
         <input
           type="text"
           placeholder="title"
-          onChange={(e) => setPost({ ...post, title: e.target.value })}
+          onChange={e => setPost({ ...post, title: e.target.value })}
         />
         <input
           type="file"
           placeholder="Archivo"
-          onChange={(e) => setPost({ ...post, title: e.target.files[0]})}
+          onChange={e => setPost({ ...post, title: e.target.files[0]})}
         />
         <button>Subir</button>
       </form>
